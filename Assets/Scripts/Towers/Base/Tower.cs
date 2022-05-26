@@ -7,11 +7,7 @@ public abstract class Tower : MonoBehaviour {
     public float fireRate;
     public float range;
 
-    void Start ( ) {
-
-    }
-
-    void Update ( ) {
-
+    protected virtual void AimAt (Transform target) {
+        
     }
 }

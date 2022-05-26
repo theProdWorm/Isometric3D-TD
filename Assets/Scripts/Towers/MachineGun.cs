@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerCollection : MonoBehaviour {
-    public Tower[ ] towers;
-
+public class MachineGun : MonoBehaviour {
     void Start ( ) {
 
     }
