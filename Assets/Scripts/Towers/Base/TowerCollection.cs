@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
 
 public class TowerCollection : MonoBehaviour {
-    public Tower[ ] towers;
+    public GameObject[ ] towers;
 }

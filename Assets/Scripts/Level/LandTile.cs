@@ -3,8 +3,10 @@
 public class LandTile : MonoBehaviour {
     public float maxScale;
 
-    void Start ( ) {
+    private TowerCollection towerCollection;
 
+    void Awake ( ) {
+        towerCollection = FindObjectOfType<TowerCollection>( );
     }
 
     void Update ( ) {
@@ -24,5 +26,7 @@ public class LandTile : MonoBehaviour {
     private void OnMouseUpAsButton ( ) {
         // open shop
 
+        var twr = Instantiate(towerCollection.towers[0]);
+        twr.transform.position += transform.position;
     }
 }
