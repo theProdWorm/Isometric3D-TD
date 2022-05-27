@@ -9,10 +9,6 @@ public class LandTile : MonoBehaviour {
         towerCollection = FindObjectOfType<TowerCollection>( );
     }
 
-    void Update ( ) {
-
-    }
-
     private void OnMouseEnter ( ) {
         transform.localScale = new Vector3(1, maxScale, 1);
         transform.position += Vector3.up * ((maxScale - 1) / 2);

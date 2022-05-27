@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 
 public class MachineGun : MonoBehaviour, IProjectileShooter {
     public Transform rotArm;
@@ -18,5 +19,9 @@ public class MachineGun : MonoBehaviour, IProjectileShooter {
     }
 
     private void Update ( ) {
+        var closestEnemy = FindObjectsOfType<Enemy>( ).Aggregate((closest, next) =>
+        Vector3.Distance(transform.position, next.transform.position) < Vector3.Distance(transform.position, closest.transform.position) ? next : closest);
+
+        AimAt(closestEnemy.transform);
     }
 }
