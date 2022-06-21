@@ -4,4 +4,8 @@ public abstract class Enemy : MonoBehaviour {
     public float speed;
     public float hp;
     public float damage;
+
+    protected virtual void Update ( ) {
+
+    }
 }
