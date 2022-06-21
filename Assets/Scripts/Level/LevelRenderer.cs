@@ -12,7 +12,7 @@ public class LevelRenderer : MonoBehaviour {
 
     public int c_level;
 
-    void Start ( ) {
+    private void Awake ( ) {
         GenerateLevel(c_level);
     }
 
