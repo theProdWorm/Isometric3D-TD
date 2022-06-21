@@ -33,10 +33,6 @@ public abstract class Enemy : MonoBehaviour {
             roadTiles.Remove(next);
         }
 
-        for (int i = 0; i < path.Count; i++) {
-            print($"{i + 1}: {path[i]}");
-        }
-
         transform.position = path[0] + Vector3.up;
     }
 
