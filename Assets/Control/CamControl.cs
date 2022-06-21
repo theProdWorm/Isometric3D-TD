@@ -3,11 +3,16 @@ using UnityEngine;
 public class CamControl : MonoBehaviour {
     public float panSpeed;
     public float zoomSpeed;
+    public float zoomLerp;
 
     private Camera cam;
 
+    private float zoomTarget;
+
     private void Start ( ) {
         cam = GetComponent<Camera>( );
+
+        zoomTarget = cam.orthographicSize;
 
         transform.position -= transform.forward * 100;
     }
@@ -27,6 +32,8 @@ public class CamControl : MonoBehaviour {
     }
 
     private void Zoom ( ) {
-        cam.orthographicSize -= zoomSpeed * Time.deltaTime * Input.mouseScrollDelta.y;
+        zoomTarget += zoomSpeed * Time.deltaTime * -Input.mouseScrollDelta.y;
+
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomTarget, zoomLerp);
     }
 }
