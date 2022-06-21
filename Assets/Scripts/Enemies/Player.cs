@@ -3,7 +3,9 @@
 public class Player : Enemy {
     private Rigidbody rb;
 
-    private void Start ( ) {
+    protected override void Start ( ) {
+        base.Start( );
+
         rb = GetComponent<Rigidbody>( );
     }
 

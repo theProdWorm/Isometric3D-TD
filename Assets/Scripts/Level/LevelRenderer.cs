@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class LevelRenderer : MonoBehaviour {
-    public static Tile[ , ] tiles;
+    public static Tile[][] tiles;
 
     public Texture2D[ ] levelMaps;
 
@@ -17,7 +17,11 @@ public class LevelRenderer : MonoBehaviour {
     }
 
     public void GenerateLevel (int level) {
-        tiles = new Tile[levelMaps[level].width, levelMaps[level].height];
+        tiles = new Tile[levelMaps[level].width][];
+
+        for (int i = 0; i < tiles.Length; i++) {
+            tiles[i] = new Tile[levelMaps[level].height];
+        }
 
         for (int y = 0; y < levelMaps[level].height; y++) {
             for (int x = 0; x < levelMaps[level].width; x++) {
@@ -25,12 +29,12 @@ public class LevelRenderer : MonoBehaviour {
                 float r = Mathf.Round(pixel.r);
 
                 if (r == 1) {
-                    tiles[x, y] = Tile.land;
+                    tiles[x][y] = Tile.land;
 
                     Instantiate(landTile, new Vector3(x, 0, -y), Quaternion.identity, levelParent);
                 }
                 else {
-                    tiles[x, y] = Tile.road;
+                    tiles[x][y] = Tile.road;
 
                     Instantiate(roadTile, new Vector3(x, 0, -y), Quaternion.identity, levelParent);
                 }
