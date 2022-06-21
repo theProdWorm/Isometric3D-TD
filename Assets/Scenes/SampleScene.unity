@@ -404,9 +404,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ae994dceb5b05b4c9d991368b869105, type: 3}
+  m_Script: {fileID: 11500000, guid: 90a2d097cd57e3f4f8762ef16c8f3542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panSpeed: 5
+  zoomSpeed: 30
+  zoomLerp: 0.04
+  minZoom: 3
+  maxZoom: 10
+  minPanX: 0
+  maxPanX: 0
+  minPanY: 0
+  maxPanY: 0
 --- !u!1 &1767262785
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,12 +449,13 @@ MonoBehaviour:
   - {fileID: 2800000, guid: a27ef82dd464fae4aa51c043eeb96330, type: 3}
   - {fileID: 2800000, guid: 0bf661c4fe047f6478c4214637536cca, type: 3}
   - {fileID: 2800000, guid: 019a9f6289c497640b37d9386b80fe92, type: 3}
+  - {fileID: 2800000, guid: 3f40b8a2eeda8fb4f8dd26b91a25050e, type: 3}
   landTile: {fileID: 7303763902336594919, guid: 19ec5d4bc2e9960499577ea7f8dc1ae4,
     type: 3}
   roadTile: {fileID: 3767160703929121181, guid: efae47afba9f9eb4b96b751c76c71784,
     type: 3}
   levelParent: {fileID: 687065782}
-  c_level: 2
+  c_level: 1
 --- !u!4 &1767262787
 Transform:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public abstract class Enemy : MonoBehaviour {
             }
         }
 
-        path.Add(new Vector3(roadTiles[0].x, 0, -roadTiles[0].y));
+        path.Add(new Vector3(roadTiles[0].x, 1, -roadTiles[0].y));
         roadTiles.RemoveAt(0);
 
         while (roadTiles.Count > 0) {
@@ -29,7 +29,7 @@ public abstract class Enemy : MonoBehaviour {
 
             var next = AdjacentTile(prev, roadTiles);
 
-            path.Add(new Vector3(next.x, 0, -next.y));
+            path.Add(new Vector3(next.x, 1, -next.y));
             roadTiles.Remove(next);
         }
 
@@ -55,6 +55,11 @@ public abstract class Enemy : MonoBehaviour {
     }
 
     protected virtual void Update ( ) {
+        if (path.Count <= 0) return;
 
+        transform.position = Vector3.MoveTowards(transform.position, path[0], speed * Time.deltaTime);
+
+        if (transform.position == path[0])
+            path.RemoveAt(0);
     }
 }
