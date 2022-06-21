@@ -15,8 +15,8 @@ public class LevelRenderer : MonoBehaviour {
     }
 
     public void GenerateLevel (int level) {
-        for (int x = 0; x < levelMaps[level].width; x++) {
-            for (int y = 0; y < levelMaps[level].height; y++) {
+        for (int y = 0; y < levelMaps[level].height; y++) {
+            for (int x = 0; x < levelMaps[level].width; x++) {
                 Color pixel = levelMaps[level].GetPixel(x, y);
                 float r = Mathf.Round(pixel.r);
 
