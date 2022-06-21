@@ -5,9 +5,12 @@ public class CamControl : MonoBehaviour {
     public float zoomSpeed;
     public float zoomLerp;
 
-    private Camera cam;
+    public float minZoom, maxZoom;
+    public float minPanX, maxPanX, minPanY, maxPanY;
 
     private float zoomTarget;
+
+    private Camera cam;
 
     private void Start ( ) {
         cam = GetComponent<Camera>( );
@@ -32,7 +35,7 @@ public class CamControl : MonoBehaviour {
     }
 
     private void Zoom ( ) {
-        zoomTarget += zoomSpeed * Time.deltaTime * -Input.mouseScrollDelta.y;
+        zoomTarget = Mathf.Clamp(zoomTarget + zoomSpeed * Time.deltaTime * -Input.mouseScrollDelta.y, minZoom, maxZoom);
 
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomTarget, zoomLerp);
     }
