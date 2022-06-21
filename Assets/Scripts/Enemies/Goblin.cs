@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
 public class Goblin : Enemy {
-
-    public Goblin(Transform i_tile) : base(i_tile) {
+    public Goblin ( ) {
         speed = 2;
         hp = 2;
         damage = 1;

@@ -3,10 +3,6 @@
 public class Player : Enemy {
     private Rigidbody rb;
 
-    public Player(Transform i_tile) : base(i_tile) {
-
-    }
-
     private void Start ( ) {
         rb = GetComponent<Rigidbody>( );
     }

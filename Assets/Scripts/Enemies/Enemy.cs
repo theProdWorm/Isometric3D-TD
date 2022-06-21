@@ -8,10 +8,6 @@ public abstract class Enemy : MonoBehaviour {
     protected Transform c_tile;
     protected Transform n_tile;
 
-    public Enemy(Transform i_tile) {
-        c_tile = i_tile;
-    }
-
     private void Start ( ) {
         
     }
