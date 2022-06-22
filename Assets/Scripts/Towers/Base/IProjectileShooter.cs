@@ -2,4 +2,5 @@
 
 public interface IProjectileShooter {
     void AimAt (Transform target);
+    void Shoot ( );
 }

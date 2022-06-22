@@ -7,6 +7,8 @@ public abstract class Enemy : MonoBehaviour {
     public float hp;
     public float damage;
 
+    public float travelledDistance;
+
     private List<Vector3> path = new List<Vector3>( );
 
     protected virtual void Start ( ) {
@@ -53,7 +55,11 @@ public abstract class Enemy : MonoBehaviour {
     protected virtual void Update ( ) {
         if (path.Count <= 0) return;
 
-        transform.position = Vector3.MoveTowards(transform.position, path[0], speed * Time.deltaTime);
+        var newPos = Vector3.MoveTowards(transform.position, path[0], speed * Time.deltaTime);
+        var moveDelta = (newPos - transform.position).magnitude;
+
+        transform.position = newPos;
+        travelledDistance += moveDelta;
 
         if (transform.position == path[0])
             path.RemoveAt(0);

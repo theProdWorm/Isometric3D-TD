@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Linq;
 
-public class MachineGun : MonoBehaviour, IProjectileShooter {
+public class MachineGun : Tower, IProjectileShooter {
     public Transform rotArm;
     public Transform rotJoint;
 
@@ -18,14 +17,17 @@ public class MachineGun : MonoBehaviour, IProjectileShooter {
         rotJoint.localRotation = vRot;
     }
 
+    public void Shoot ( ) {
+        if (fireCD > 0) return;
+
+        fireCD = 1 / fireRate;
+    }
+
     private void Update ( ) {
         var enemies = FindObjectsOfType<Enemy>( );
 
         if (enemies.Length <= 0) return;
 
-        var closestEnemy = enemies.Aggregate((closest, next) =>
-        Vector3.Distance(transform.position, next.transform.position) < Vector3.Distance(transform.position, closest.transform.position) ? next : closest);
-
-        AimAt(closestEnemy.transform);
+        AimAt(Target(enemies));
     }
 }
