@@ -547,6 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goblin: {fileID: 5660342901917319169, guid: 328249c82b0f4ef4f87bdfcdd1e08085, type: 3}
+  orc: {fileID: 3000138021598271844, guid: 74c5f0391be8d4c4283669bfff88c3ab, type: 3}
 --- !u!4 &2041888250
 Transform:
   m_ObjectHideFlags: 0
