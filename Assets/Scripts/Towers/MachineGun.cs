@@ -4,10 +4,10 @@ public class MachineGun : Tower, IProjectileShooter {
     public Transform rotArm;
     public Transform rotJoint;
 
-    public void AimAt (Transform target) {
-        if (target == null) return;
+    public void AimAtTarget ( ) {
+        if (Target == null) return;
 
-        Vector3 dist = transform.position - target.position;
+        Vector3 dist = transform.position - Target.transform.position;
 
         float hAngle = -Mathf.Atan2(dist.z, dist.x) * Mathf.Rad2Deg;
         float vAngle = -Mathf.Atan2(dist.y, Mathf.Sqrt(dist.x * dist.x + dist.z * dist.z)) * Mathf.Rad2Deg;
@@ -26,6 +26,6 @@ public class MachineGun : Tower, IProjectileShooter {
     }
 
     private void Update ( ) {
-        AimAt(Target);
+        AimAtTarget( );
     }
 }

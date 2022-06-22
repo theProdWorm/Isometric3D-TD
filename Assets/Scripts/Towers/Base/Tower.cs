@@ -63,27 +63,33 @@ public abstract class Tower : MonoBehaviour {
     }
 
     private Transform Strong (Enemy[ ] enemies) {
-        var strongest = enemies[0];
-        List<Enemy> _enemies = enemies.OrderByDescending(x => x.travelledDistance).ToList( );
+        var highestHP = enemies.Max(x => x.hp);
 
-        foreach (var enemy in _enemies) {
-            if (enemy.hp > strongest.hp)
-                strongest = enemy;
+        List<Enemy> _enemies = new( );
+
+        for (int i = 0; i < enemies.Length; i++) {
+            if (enemies[i].hp == highestHP)
+                _enemies.Add(enemies[i]);
         }
 
-        return strongest.transform;
+        var firstStrongest = _enemies.Aggregate((first, prev) => prev.travelledDistance > first.travelledDistance ? prev : first);
+
+        return firstStrongest.transform;
     }
 
     private Transform Weak (Enemy[ ] enemies) {
-        var weakest = enemies[0];
-        List<Enemy> _enemies = enemies.OrderByDescending(x => x.travelledDistance).Reverse( ).ToList( );
+        var lowestHP = enemies.Min(x => x.hp);
 
-        foreach (var enemy in _enemies) {
-            if (enemy.hp < weakest.hp)
-                weakest = enemy;
+        List<Enemy> _enemies = new( );
+
+        for (int i = 0; i < enemies.Length; i++) {
+            if (enemies[i].hp == lowestHP)
+                _enemies.Add(enemies[i]);
         }
 
-        return weakest.transform;
+        var target = _enemies.Aggregate((target, prev) => prev.travelledDistance > target.travelledDistance ? prev : target);
+
+        return target.transform;
     }
 
     private Transform Close (Enemy[ ] enemies) {
