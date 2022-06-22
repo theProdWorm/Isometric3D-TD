@@ -1,12 +1,10 @@
 using UnityEngine;
 
-public class Spawn : MonoBehaviour
-{
+public class Spawn : MonoBehaviour {
     public GameObject goblin;
     public GameObject orc;
 
-    void Update()
-    {
+    private void Update ( ) {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             Instantiate(goblin);
         }

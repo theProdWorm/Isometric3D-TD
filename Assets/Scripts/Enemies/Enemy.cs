@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour {
@@ -10,10 +9,10 @@ public abstract class Enemy : MonoBehaviour {
     [HideInInspector]
     public float travelledDistance;
 
-    private List<Vector3> path = new List<Vector3>( );
+    private readonly List<Vector3> path = new( );
 
     protected virtual void Start ( ) {
-        List<Vector2> roadTiles = new List<Vector2>( );
+        List<Vector2> roadTiles = new( );
 
         for (int x = 0; x < LevelRenderer.tiles.Length; x++) {
             for (int y = 0; y < LevelRenderer.tiles[x].Length; y++) {
@@ -27,13 +26,19 @@ public abstract class Enemy : MonoBehaviour {
         path.Add(new Vector3(roadTiles[0].x, 1, -roadTiles[0].y));
         roadTiles.RemoveAt(0);
 
+        int len = roadTiles.Count;
+        int i = 0;
         while (roadTiles.Count > 0) {
+            if (i > len) break; // prevents infinite loop
+
             var prev = new Vector3(path[^1].x, -path[^1].z);
 
             var next = AdjacentTile(prev, roadTiles);
 
             path.Add(new Vector3(next.x, 1, -next.y));
             roadTiles.Remove(next);
+
+            i++;
         }
 
         transform.position = path[0] + Vector3.up;

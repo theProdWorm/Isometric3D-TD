@@ -5,7 +5,7 @@ public class LandTile : MonoBehaviour {
 
     private TowerCollection towerCollection;
 
-    void Awake ( ) {
+    private void Awake ( ) {
         towerCollection = FindObjectOfType<TowerCollection>( );
     }
 

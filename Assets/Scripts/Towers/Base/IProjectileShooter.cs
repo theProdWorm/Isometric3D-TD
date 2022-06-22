@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public interface IProjectileShooter {
+﻿public interface IProjectileShooter {
     void AimAtTarget ( );
     void Shoot ( );
 }

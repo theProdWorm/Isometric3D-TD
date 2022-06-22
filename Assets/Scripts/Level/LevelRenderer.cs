@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class LevelRenderer : MonoBehaviour {
-    public static Tile[][] tiles;
+    public static Tile[ ][ ] tiles;
 
     public Texture2D[ ] levelMaps;
 
@@ -17,7 +17,7 @@ public class LevelRenderer : MonoBehaviour {
     }
 
     public void GenerateLevel (int level) {
-        tiles = new Tile[levelMaps[level].width][];
+        tiles = new Tile[levelMaps[level].width][ ];
 
         for (int i = 0; i < tiles.Length; i++) {
             tiles[i] = new Tile[levelMaps[level].height];

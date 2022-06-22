@@ -14,7 +14,8 @@ public abstract class Tower : MonoBehaviour {
 
     protected float fireCD;
 
-    protected Transform Target { get {
+    protected Transform Target {
+        get {
             var enemies = (from enemy in FindObjectsOfType<Enemy>( )
                            where Vector3.Distance(transform.position, enemy.transform.position) <= range
                            select enemy).ToArray( );
@@ -26,7 +27,7 @@ public abstract class Tower : MonoBehaviour {
         }
     }
 
-    protected Func<Enemy[ ], Transform> SelectTarget {
+    private Func<Enemy[ ], Transform> SelectTarget {
         get {
             return targetMode switch {
                 TargetMode.first => First,
