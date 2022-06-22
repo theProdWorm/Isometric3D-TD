@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour {
     public float hp;
     public float damage;
 
+    [HideInInspector]
     public float travelledDistance;
 
     private List<Vector3> path = new List<Vector3>( );
@@ -49,11 +50,16 @@ public abstract class Enemy : MonoBehaviour {
                 return next;
         }
 
-        throw new System.NullReferenceException( );
+        throw new System.NullReferenceException("Path is not walkable.");
     }
 
     protected virtual void Update ( ) {
-        if (path.Count <= 0) return;
+        if (path.Count <= 0) {
+            // TODO: deal damage to "player"
+
+            Destroy(gameObject);
+            return;
+        }
 
         var newPos = Vector3.MoveTowards(transform.position, path[0], speed * Time.deltaTime);
         var moveDelta = (newPos - transform.position).magnitude;

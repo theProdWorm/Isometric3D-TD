@@ -5,6 +5,8 @@ public class MachineGun : Tower, IProjectileShooter {
     public Transform rotJoint;
 
     public void AimAt (Transform target) {
+        if (target == null) return;
+
         Vector3 dist = transform.position - target.position;
 
         float hAngle = -Mathf.Atan2(dist.z, dist.x) * Mathf.Rad2Deg;
@@ -24,10 +26,6 @@ public class MachineGun : Tower, IProjectileShooter {
     }
 
     private void Update ( ) {
-        var enemies = FindObjectsOfType<Enemy>( );
-
-        if (enemies.Length <= 0) return;
-
-        AimAt(Target(enemies));
+        AimAt(Target);
     }
 }

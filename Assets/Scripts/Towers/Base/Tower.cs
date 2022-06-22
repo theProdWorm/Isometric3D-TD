@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Tower : MonoBehaviour {
@@ -8,11 +10,23 @@ public abstract class Tower : MonoBehaviour {
     public float fireRate;
     public float range;
 
-    public TargetMode targetMode { get; set; }
+    public TargetMode targetMode;
 
     protected float fireCD;
 
-    protected Func<Enemy[ ], Transform> Target {
+    protected Transform Target { get {
+            var enemies = (from enemy in FindObjectsOfType<Enemy>( )
+                           where Vector3.Distance(transform.position, enemy.transform.position) <= range
+                           select enemy).ToArray( );
+
+            if (enemies.Length <= 0)
+                return null;
+
+            return SelectTarget(enemies);
+        }
+    }
+
+    protected Func<Enemy[ ], Transform> SelectTarget {
         get {
             return targetMode switch {
                 TargetMode.first => First,
@@ -50,8 +64,9 @@ public abstract class Tower : MonoBehaviour {
 
     private Transform Strong (Enemy[ ] enemies) {
         var strongest = enemies[0];
+        List<Enemy> _enemies = enemies.OrderByDescending(x => x.travelledDistance).ToList( );
 
-        foreach (var enemy in enemies) {
+        foreach (var enemy in _enemies) {
             if (enemy.hp > strongest.hp)
                 strongest = enemy;
         }
@@ -61,8 +76,9 @@ public abstract class Tower : MonoBehaviour {
 
     private Transform Weak (Enemy[ ] enemies) {
         var weakest = enemies[0];
+        List<Enemy> _enemies = enemies.OrderByDescending(x => x.travelledDistance).Reverse( ).ToList( );
 
-        foreach (var enemy in enemies) {
+        foreach (var enemy in _enemies) {
             if (enemy.hp < weakest.hp)
                 weakest = enemy;
         }
