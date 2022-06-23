@@ -28,8 +28,6 @@ public class LevelRenderer : MonoBehaviour {
             for (int x = 0; x < levelMaps[level].width; x++) {
                 Color pixel = levelMaps[level].GetPixel(x, y);
 
-                print($"r: {pixel.r}, g: {pixel.g}, b: {pixel.b}");
-
                 float r = Mathf.Round(pixel.r * 2);
                 float g = Mathf.Round(pixel.g * 2);
                 float b = Mathf.Round(pixel.b * 2);

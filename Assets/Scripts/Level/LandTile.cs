@@ -19,16 +19,10 @@ public class LandTile : MonoBehaviour {
     }
 
     private void OnMouseEnter ( ) {
-        //transform.localScale = new Vector3(1, maxScale, 1);
-        //transform.position += Vector3.up * ((maxScale - 1) / 2);
-
         renderer.material.color = Color.yellow;
     }
 
     private void OnMouseExit ( ) {
-        //transform.localScale = Vector3.one;
-        //transform.position -= Vector3.up * ((maxScale - 1) / 2);
-
         renderer.material.color = defColor;
     }
 
