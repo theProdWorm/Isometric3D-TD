@@ -7,6 +7,7 @@ public class LevelRenderer : MonoBehaviour {
 
     public GameObject landTile;
     public GameObject roadTile;
+    public GameObject rockTile;
 
     public Transform levelParent;
 
@@ -26,17 +27,27 @@ public class LevelRenderer : MonoBehaviour {
         for (int y = 0; y < levelMaps[level].height; y++) {
             for (int x = 0; x < levelMaps[level].width; x++) {
                 Color pixel = levelMaps[level].GetPixel(x, y);
-                float r = Mathf.Round(pixel.r);
 
-                if (r == 1) {
+                print($"r: {pixel.r}, g: {pixel.g}, b: {pixel.b}");
+
+                float r = Mathf.Round(pixel.r * 2);
+                float g = Mathf.Round(pixel.g * 2);
+                float b = Mathf.Round(pixel.b * 2);
+
+                if (r == 2 && g == 2 && b == 2) {
                     tiles[x][y] = Tile.land;
 
                     Instantiate(landTile, new Vector3(x, 0, -y), Quaternion.identity, levelParent);
                 }
-                else {
+                else if (r == 0 && g == 0 && b == 0) {
                     tiles[x][y] = Tile.road;
 
                     Instantiate(roadTile, new Vector3(x, 0, -y), Quaternion.identity, levelParent);
+                }
+                else {
+                    tiles[x][y] = Tile.rock;
+
+                    Instantiate(rockTile, new Vector3(x, 0, -y), Quaternion.identity, levelParent);
                 }
             }
         }

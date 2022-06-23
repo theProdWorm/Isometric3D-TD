@@ -23,6 +23,6 @@ public class LandTile : MonoBehaviour {
         // open shop
 
         var twr = Instantiate(towerCollection.towers[0]);
-        twr.transform.position += transform.position;
+        twr.transform.position += new Vector3(transform.position.x, 0, transform.position.z);
     }
 }

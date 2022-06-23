@@ -23,8 +23,8 @@ public abstract class Enemy : MonoBehaviour {
 
         List<Vector2> roadTiles = new( );
 
-        for (int x = 0; x < LevelRenderer.tiles.Length; x++) {
-            for (int y = 0; y < LevelRenderer.tiles[x].Length; y++) {
+        for (int y = 0; y < LevelRenderer.tiles.Length; y++) {
+            for (int x = 0; x < LevelRenderer.tiles[y].Length; x++) {
                 Tile tile = LevelRenderer.tiles[x][y];
 
                 if (tile == Tile.road)
@@ -35,19 +35,13 @@ public abstract class Enemy : MonoBehaviour {
         path.Add(new Vector3(roadTiles[0].x, 1, -roadTiles[0].y));
         roadTiles.RemoveAt(0);
 
-        int len = roadTiles.Count;
-        int i = 0;
         while (roadTiles.Count > 0) {
-            if (i > len) break; // prevents infinite loop
-
             var prev = new Vector3(path[^1].x, -path[^1].z);
 
             var next = AdjacentTile(prev, roadTiles);
 
             path.Add(new Vector3(next.x, 1, -next.y));
             roadTiles.Remove(next);
-
-            i++;
         }
 
         transform.position = path[0];
