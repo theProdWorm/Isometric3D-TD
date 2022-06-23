@@ -5,13 +5,22 @@ public abstract class Enemy : MonoBehaviour {
     public float speed;
     public float hp;
     public float damage;
+    public float HP {
+        get => hp;
+        set {
+            hp = value;
+            if (hp <= 0) Die( );
+        }
+    }
 
     [HideInInspector]
     public float travelledDistance;
 
     private readonly List<Vector3> path = new( );
 
-    protected virtual void Start ( ) {
+    protected virtual void Awake ( ) {
+        HP = hp;
+
         List<Vector2> roadTiles = new( );
 
         for (int x = 0; x < LevelRenderer.tiles.Length; x++) {
@@ -41,7 +50,7 @@ public abstract class Enemy : MonoBehaviour {
             i++;
         }
 
-        transform.position = path[0] + Vector3.up;
+        transform.position = path[0];
     }
 
     private Vector3 AdjacentTile (Vector2 prev, List<Vector2> roadTiles) {
@@ -74,5 +83,11 @@ public abstract class Enemy : MonoBehaviour {
 
         if (transform.position == path[0])
             path.RemoveAt(0);
+    }
+
+    protected virtual void Die ( ) {
+        Destroy(gameObject);
+
+        print($"{name} was killed!");
     }
 }
