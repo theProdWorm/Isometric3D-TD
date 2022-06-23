@@ -29,7 +29,8 @@ public class LandTile : MonoBehaviour {
     private void OnMouseUpAsButton ( ) {
         // open shop
 
-        var twr = Instantiate(towerCollection.towers[0]);
-        twr.transform.position += new Vector3(transform.position.x, 0, transform.position.z);
+        if (transform.childCount > 0) return;
+
+        var twr = Instantiate(towerCollection.towers[0], transform);
     }
 }
