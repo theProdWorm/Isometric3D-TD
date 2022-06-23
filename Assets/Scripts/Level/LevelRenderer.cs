@@ -29,15 +29,13 @@ public class LevelRenderer : MonoBehaviour {
                 Color pixel = levelMaps[level].GetPixel(x, y);
 
                 float r = Mathf.Round(pixel.r * 2);
-                float g = Mathf.Round(pixel.g * 2);
-                float b = Mathf.Round(pixel.b * 2);
-
-                if (r == 2 && g == 2 && b == 2) {
+                
+                if (r == 2) {
                     tiles[x][y] = Tile.land;
 
                     Instantiate(landTile, new Vector3(x, 0, -y), Quaternion.identity, levelParent);
                 }
-                else if (r == 0 && g == 0 && b == 0) {
+                else if (r == 0) {
                     tiles[x][y] = Tile.road;
 
                     Instantiate(roadTile, new Vector3(x, 0, -y), Quaternion.identity, levelParent);
